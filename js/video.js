@@ -40,16 +40,29 @@ document.querySelector("#skip").addEventListener("click", function() {
 	console.log("New location is", video.currentTime)
 });
 
-document.querySelector("mute").addEventListener("click", function() {
+let muteButton = document.querySelector("#mute");
+document.querySelector("#mute").addEventListener("click", function() {
 	if (video.muted) {
         video.muted = false;
-        muteBtn.textContent = "Mute";
+		muteButton.textContent = "Mute"
         console.log("Unmuted");
     } else {
         video.muted = true;
-        muteBtn.textContent = "Unmute";
+		muteButton.textContent = "Unmute"
         console.log("Muted");
     }
 });
 
+document.querySelector("#slider").addEventListener("input", function() {
+    let volume = this.value / 100;
+	video.volume = volume;
+	document.querySelector("#volume").textContent = (volume * 100 ) + "%"; 
+});
 
+document.querySelector("#vintage").addEventListener("click", function(){
+    video.classList.add("oldSchool")
+});
+
+document.querySelector("#orig").addEventListener("click", function(){
+    video.classList.remove("oldSchool")
+});
