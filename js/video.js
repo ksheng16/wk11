@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	video.play()
+	// update volume after play
+	document.querySelector("#volume").textContent = "100%"; 
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -32,12 +34,15 @@ document.querySelector("#faster").addEventListener("click", function() {
 
 document.querySelector("#skip").addEventListener("click", function() {
 	console.log("In skip")
-	console.log("The duration is", video.duration)
-	console.log("Current location is" , video.currentTime)
+	if (video.currentTime + 10 >= video.duration){
+		video.currentTime = 0;
+		console.log("Going back to beginning");
+	}
+	else{
+		video.currentTime += 10;
+	}
 
-	video.currentTime += 15
-
-	console.log("New location is", video.currentTime)
+	console.log("Current time is", video.currentTime)
 });
 
 let muteButton = document.querySelector("#mute");
