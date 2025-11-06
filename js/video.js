@@ -2,12 +2,19 @@ var video = document.querySelector("#player1")
 
 window.addEventListener("load", function() {
 	console.log("Good job opening the window");
-	document.querySelector("#volume").textContent = (video.volume * 100) + "%";
 });
+
+let volumeInitialized = false;
 
 document.querySelector("#play").addEventListener("click", function() {
 	console.log("Play Video");
 	video.play()
+
+	//set volume display the first time play is pressed
+	if (!volumeInitialized){
+		document.querySelector("#volume").textContent = (video.volume * 100) + "%";
+		volumeInitialized = true;
+	}
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
